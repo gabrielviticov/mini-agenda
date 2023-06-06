@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Novo Contato</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <section>
+            <header>
+                <main><a href="/contacts/new" th:href="@{/contacts}">Novo Contato</a></main>
+                <main><a href="/agenda/list" th:href="@{/agenda}">Sua Agenda</a></main>
+            </header>
+        </section>
+    </div>
+
+    <div>
+
+        <h1>Novo Contato</h1>
+        <p>Formulário para preenchimento de um novo contato telefônico.</p>
+    </div>
+    <div>
+    <form action="/contact/new" method="post">
+        <div>
+            <label for="fullName">Nome Completo: </label>
+            <input type="text" name="fullName" th:value="${contact?.fullName}">
+            <!-- th:value="" declaração do Thymeleaf que passa como expressão uma chamada ao objeto "contact" da classe "Contact" que será como valor o atributo "fullName" -->
+        </div>
+        <div>
+            <label for="company">Empresa: </label>
+            <input type="text" name="company" th:value="${contact?.company}">
+        </div>
+        <div>
+            <label for="phoneNumber">Número de Telefone</label>
+            <input type="number" name="phoneNumber" th:value="${contact?.phoneNumber}">
+        </div>
+
+        <div>
+            <label for="email">Endereço de E-mail: </label>
+            <input type="email" name="email" th:value="${contact?.email}">
+        </div>
+
+        <div>
+            <label for="birthday">Data de Nascimento: </label>
+            <input type="date" name="birthday" th:value="${contact?.birthday}">
+        </div>
+
+        <div>
+            <input type="submit" value="Salvar">
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

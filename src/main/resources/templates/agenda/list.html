@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Sua agenda</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <section>
+            <header>
+                <main><a href="/contacts/new" th:href="@{/contacts}">Novo Contato</a></main>
+                <main><a href="/agenda/list" th:href="@{/agenda}">Sua Agenda</a></main>
+            </header>
+        </section>
+    </div>
+
+
+    <h1>Sua Agenda</h1>
+    <p>Toda a sua agenda telefônica cadastrada em nosso banco de dados</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>Empresa</th>
+                <th>Número de Telefone</th>
+                <th>Endereço de Email</th>
+                <th>Data de Nascimento</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="contact : ${list}">
+                <td th:Text="${contact.getId()}"></td>
+                <td th:Text="${contact.getFullName()}"></td>
+                <td th:Text="${contact.getCompany()}"></td>
+                <td th:Text="${contact.getPhoneNumber()}"></td>
+                <td th:Text="${contact.getEmail()}"></td>
+                <td th:Text="${contact.getBirthday()}"></td>
+                <td>
+                    <a th:href="@{/contacts?id={id}(id=${contact.id})}">Editar</a>
+                    <form action="/contacts/new" method="post" th:href="@{/contacts}">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="id" th:value="${contact.id}">
+                        <input type="submit" value="Deletar">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
