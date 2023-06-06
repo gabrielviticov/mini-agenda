@@ -43,12 +43,12 @@
                 <td th:Text="${contact.getCompany()}"></td>
                 <td th:Text="${contact.getPhoneNumber()}"></td>
                 <td th:Text="${contact.getEmail()}"></td>
-                <td th:Text="${contact.getBirthday()}"></td>
+                <td th:Text="${contact.getBirthdate()}"></td>
                 <td>
                     <a th:href="@{/contacts?id={id}(id=${contact.id})}">Editar</a>
-                    <form action="/contacts/new" method="post" th:href="@{/contacts}">
+                    <form action="/agenda" method="post" th:href="@{/agenda}">
                         <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="id" th:value="${contact.id}">
+                        <input type="hidden" name="id" th:value="${contact?.id}">
                         <input type="submit" value="Deletar">
                     </form>
                 </td>
